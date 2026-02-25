@@ -66,7 +66,7 @@ Note: keyboard shortcuts are user-level in VS Code. Document custom bindings (li
 
 Script: `new-project-from-template.ps1`
 
-GitHub source: `https://github.com/brotherbill/dlang_course/blob/main/c01_p1_my_first_app_windows/new-project-from-template.ps1`
+GitHub source: `https://github.com/brotherbill/c01_p1_my_first_app_windows/blob/main/new-project-from-template.ps1`
 
 Required parameters:
 
@@ -76,7 +76,7 @@ Required parameters:
 Run from any folder (for example `C:\temp`):
 
 ```powershell
-$scriptUrl = "https://raw.githubusercontent.com/brotherbill/dlang_course/main/c01_p1_my_first_app_windows/new-project-from-template.ps1"
+$scriptUrl = "https://raw.githubusercontent.com/brotherbill/c01_p1_my_first_app_windows/main/new-project-from-template.ps1"
 $scriptPath = Join-Path $env:TEMP "new-project-from-template.ps1"
 Invoke-WebRequest -Uri $scriptUrl -OutFile $scriptPath
 & $scriptPath -projectName "my-new-project" -description "my description"
@@ -84,9 +84,9 @@ Invoke-WebRequest -Uri $scriptUrl -OutFile $scriptPath
 
 What the script does:
 
-1. Creates `C:\temp\<projectName>` from this template.
+1. Clones the template project from GitHub into `C:\temp\<projectName>`.
 2. Removes old `.git` metadata.
-3. Runs `git init`.
+3. Runs `git init` (unless `-SkipGitInit` is used).
 4. Updates `.vscode/launch.json` to use `<projectName>.exe`.
 5. Updates `dub.json` (`name` and `description`).
 6. Runs `dub build`.
@@ -95,14 +95,24 @@ Optional switches:
 
 - `-NoBuild` (skip build).
 - `-SkipGitInit` (skip `git init`).
+- `-TemplateRepoUrl` (use a different GitHub template repo URL).
 
 Example:
 
 ```powershell
-$scriptUrl = "https://raw.githubusercontent.com/brotherbill/dlang_course/main/c01_p1_my_first_app_windows/new-project-from-template.ps1"
+$scriptUrl = "https://raw.githubusercontent.com/brotherbill/c01_p1_my_first_app_windows/main/new-project-from-template.ps1"
 $scriptPath = Join-Path $env:TEMP "new-project-from-template.ps1"
 Invoke-WebRequest -Uri $scriptUrl -OutFile $scriptPath
 & $scriptPath -projectName "my-new-project" -description "my description" -NoBuild -SkipGitInit
+```
+
+Example using a different template repository:
+
+```powershell
+$scriptUrl = "https://raw.githubusercontent.com/brotherbill/c01_p1_my_first_app_windows/main/new-project-from-template.ps1"
+$scriptPath = Join-Path $env:TEMP "new-project-from-template.ps1"
+Invoke-WebRequest -Uri $scriptUrl -OutFile $scriptPath
+& $scriptPath -projectName "my-new-project" -description "my description" -TemplateRepoUrl "https://github.com/your-org/your-template-repo.git"
 ```
 
 ---
@@ -116,7 +126,7 @@ Cause: a Markdown link was pasted into PowerShell.
 Use a plain command instead:
 
 ```powershell
-$scriptUrl = "https://raw.githubusercontent.com/brotherbill/dlang_course/main/c01_p1_my_first_app_windows/new-project-from-template.ps1"
+$scriptUrl = "https://raw.githubusercontent.com/brotherbill/c01_p1_my_first_app_windows/main/new-project-from-template.ps1"
 $scriptPath = Join-Path $env:TEMP "new-project-from-template.ps1"
 Invoke-WebRequest -Uri $scriptUrl -OutFile $scriptPath
 & $scriptPath -projectName "my-new-project" -description "my description"
@@ -127,7 +137,7 @@ Invoke-WebRequest -Uri $scriptUrl -OutFile $scriptPath
 One-time command:
 
 ```powershell
-$scriptUrl = "https://raw.githubusercontent.com/brotherbill/dlang_course/main/c01_p1_my_first_app_windows/new-project-from-template.ps1"
+$scriptUrl = "https://raw.githubusercontent.com/brotherbill/c01_p1_my_first_app_windows/main/new-project-from-template.ps1"
 $scriptPath = Join-Path $env:TEMP "new-project-from-template.ps1"
 Invoke-WebRequest -Uri $scriptUrl -OutFile $scriptPath
 powershell -ExecutionPolicy Bypass -File $scriptPath -projectName "my-new-project" -description "my description"

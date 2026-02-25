@@ -7,7 +7,9 @@ param(
 
     [switch]$NoBuild,
 
-    [switch]$SkipGitInit
+    [switch]$SkipGitInit,
+
+    [string]$TemplateRepoUrl = 'https://github.com/brotherbill/c01_p1_my_first_app_windows.git'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -17,7 +19,15 @@ if ([string]::IsNullOrWhiteSpace($descriptionText)) {
     throw 'description cannot be empty.'
 }
 
-$templatePath = $PSScriptRoot
+$templateRepoUrlText = $TemplateRepoUrl.Trim()
+if ([string]::IsNullOrWhiteSpace($templateRepoUrlText)) {
+    throw 'TemplateRepoUrl cannot be empty.'
+}
+
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    throw 'git is required but was not found in PATH. Install Git and retry.'
+}
+
 $parentPath = 'C:\temp'
 $targetPath = Join-Path $parentPath $projectName
 
@@ -27,14 +37,19 @@ if (Test-Path $targetPath) {
     Remove-Item -Recurse -Force $targetPath
 }
 
-New-Item -ItemType Directory -Path $targetPath | Out-Null
-Copy-Item -Recurse -Force -Path (Join-Path $templatePath '*') -Destination $targetPath
+git clone --depth 1 $templateRepoUrlText $projectName
+if ($LASTEXITCODE -ne 0 -or -not (Test-Path $targetPath)) {
+    throw "Failed to clone template repository: $templateRepoUrlText"
+}
 
 Set-Location $targetPath
 
 Remove-Item -Recurse -Force .git -ErrorAction SilentlyContinue
 if (-not $SkipGitInit) {
     git init
+    if ($LASTEXITCODE -ne 0) {
+        throw 'git init failed in the generated project.'
+    }
 }
 
 $launchJsonPath = Join-Path $targetPath '.vscode\launch.json'
@@ -56,4 +71,7 @@ $dubJson | ConvertTo-Json -Depth 20 | Set-Content -Path $dubJsonPath -Encoding u
 
 if (-not $NoBuild) {
     dub build
+    if ($LASTEXITCODE -ne 0) {
+        throw 'dub build failed in the generated project.'
+    }
 }

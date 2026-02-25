@@ -4,9 +4,9 @@ Use this page for your first class session.
 
 ## GitHub Template URL
 
-- Template repository: `https://github.com/brotherbill/dlang_course`
-- Template project folder: `https://github.com/brotherbill/dlang_course/tree/main/c01_p1_my_first_app_windows`
-- Template script (raw): `https://raw.githubusercontent.com/brotherbill/dlang_course/main/c01_p1_my_first_app_windows/new-project-from-template.ps1`
+- Template repository: `https://github.com/brotherbill/c01_p1_my_first_app_windows`
+- Template project folder: `https://github.com/brotherbill/c01_p1_my_first_app_windows`
+- Template script (raw): `https://raw.githubusercontent.com/brotherbill/c01_p1_my_first_app_windows/main/new-project-from-template.ps1`
 
 ## 1) Open the Project
 
@@ -40,7 +40,7 @@ Greetings D!
 Run from any folder (for example `C:\temp`):
 
 ```powershell
-$scriptUrl = "https://raw.githubusercontent.com/brotherbill/dlang_course/main/c01_p1_my_first_app_windows/new-project-from-template.ps1"
+$scriptUrl = "https://raw.githubusercontent.com/brotherbill/c01_p1_my_first_app_windows/main/new-project-from-template.ps1"
 $scriptPath = Join-Path $env:TEMP "new-project-from-template.ps1"
 Invoke-WebRequest -Uri $scriptUrl -OutFile $scriptPath
 & $scriptPath -projectName "my-new-project" -description "my description"
