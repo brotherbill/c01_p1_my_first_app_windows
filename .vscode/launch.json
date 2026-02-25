@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug D project",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/c01_p1_a_my_first_app_windows.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "dub: build",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug D project (Stop at entry)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/c01_p1_a_my_first_app_windows.exe",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "dub: build",
+            "console": "integratedTerminal"
+        }
+    ]
+}

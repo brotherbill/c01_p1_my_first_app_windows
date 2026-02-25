@@ -1,0 +1,12 @@
+{
+  "name": "c01_p1_a_my_first_app_windows",
+  "description": "Starter project for debugging in VS Code",
+  "license": "proprietary",
+  "authors": [
+    "dlang.school"
+  ],
+  "targetType": "executable",
+  "sourcePaths": [
+    "source"
+  ]
+}

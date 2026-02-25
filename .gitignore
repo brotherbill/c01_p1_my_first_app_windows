@@ -1,0 +1,24 @@
+.dub/
+docs.json
+__dummy.html
+docs/
+
+# Build artifacts
+*.exe
+*.pdb
+*.o
+*.obj
+*.lst
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# DUB test binaries
+*-test-*
+
+# Local backup task output
+*_success_*.zip
+
+.fake

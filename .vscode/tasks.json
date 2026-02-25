@@ -1,0 +1,50 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dub: build",
+      "type": "shell",
+      "command": "dub build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "dub: run (integratedTerminal)",
+      "type": "shell",
+      "command": "dub run",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+        },
+        "problemMatcher": []
+    },
+    {
+      "label": "backup: success snapshot",
+      "type": "shell",
+      "command": "$ts = Get-Date -Format 'yyyyMMdd_HHmmss'; $zip = '..\\${workspaceFolderBasename}_success_' + $ts + '.zip'; Compress-Archive -Path * -DestinationPath $zip -Force; Write-Host ('Backup created: ' + $zip)",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

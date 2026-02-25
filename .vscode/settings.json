@@ -1,0 +1,8 @@
+{
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "tasks.runInTerminal": true,
+    "tasks.defaultShell": "PowerShell",
+    "d.ignoreDebugHints": true,
+    "d.neverUseDub": true,
+    "d.alwaysShowDubStatusButtons": false
+}
