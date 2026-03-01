@@ -28,7 +28,7 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
     throw 'git is required but was not found in PATH. Install Git and retry.'
 }
 
-$parentPath = 'C:\temp'
+$parentPath = (Get-Location).Path
 $targetPath = Join-Path $parentPath $projectName
 
 Set-Location $parentPath
